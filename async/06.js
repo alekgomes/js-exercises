@@ -1,16 +1,14 @@
-function everyXsecsForYsecs(cb, x, y) {
+function everyXsecsForYsecs(cb, inner, outter) {
   // ADD CODE HERE
-  let limit = y;
-  const outerIterval = () => {
-    setInterval(innerInterval, y);
-  };
+  const counterLimit = outter / inner
+  let counter = 0
 
-  const innerInterval = () => {
-    limit = limit - 1
-    setInterval(cb, x);
-  };
+  const interval = setInterval(() => {
+    counter++;
+    if(counterLimit === counter) clearInterval(interval)
+    cb();    
+  }, inner*1000)
 
-  outerIterval()
 }
 // Uncomment the following lines to check your work!
 function theEnd() {
